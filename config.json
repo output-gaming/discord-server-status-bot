@@ -1,0 +1,20 @@
+{
+    "token": "DISCORD_BOT_TOKEN",
+    "interval": 15000,
+    "channel": "CHANNEL_ID",
+    "messages": [ "run init.js to generate messages"],
+    "servers": [
+        {
+            "name": "Jailbreak",
+            "ip": "173.234.30.234",
+            "port": 27015,
+            "icon": "https://i.imgur.com/5mXqv1x.png"
+        },
+        {
+            "name": "KZ Climb",
+            "ip": "173.234.30.235",
+            "port": 27015,
+            "icon": "https://i.imgur.com/DJjgFe3.png"
+        }
+    ]
+}

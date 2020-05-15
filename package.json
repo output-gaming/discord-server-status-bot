@@ -1,0 +1,19 @@
+{
+  "name": "discord-server-status",
+  "version": "1.0.0",
+  "description": "A Discord bot to display the status of Source Servers, using https://git.io/Jfl4X",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://git.extacy.cc/Extacy/discord-server-status-bot.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Extacy",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "source-server-query": "0.0.1"
+  }
+}
