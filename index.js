@@ -19,7 +19,7 @@
  */
 
 const Discord = require("discord.js");
-const query = require("source-server-query");
+const query = require('gamedig');
 
 const client = new Discord.Client({autoReconnect: true});
 const config = require("./config.json");
@@ -58,8 +58,11 @@ async function updateServers() {
     serverEmbeds = [];
 
     for (let i = 0; i < config.servers.length; i++) {
-    
-        let result = await query.info(config.servers[i].ip, config.servers[i].port, 2000);
+
+        let result = await query.query({
+            type:'arma3',
+            host: config.servers[i].ip,
+            port: config.servers[i].port});
         let live = !(result instanceof Error);
     
         const embed = new Discord.MessageEmbed()
@@ -67,7 +70,7 @@ async function updateServers() {
             .setTitle(live ? result.name : `${config.servers[i].name} | Offline`)
             .setThumbnail(live? config.servers[i].icon : "https://i.imgur.com/I2pNIWW.png")
             .addField("Current Map", result.map, true)
-            .addField("Players", `${result.playersnum}/${result.maxplayers}`, true)
+            .addField("Players", `${result.players.length}/${result.maxplayers}`, true)
             .addField("Connect", `steam://connect/${config.servers[i].ip}:${config.servers[i].port}`, true);
         
         serverEmbeds.push({
