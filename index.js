@@ -62,21 +62,25 @@ async function updateServers() {
         let result = await server.query({
             type: config.servers[i].type,
             host: config.servers[i].ip,
-            port: config.servers[i].port});
+            port: config.servers[i].port,
+            });
+
+        console.log(result);
         let live = !(result instanceof Error);
         const embed = new Discord.MessageEmbed()
             .setColor(live ? "#0099ff" : "#ff4242")
             .setTitle(live ? result.name : `${config.servers[i].name} | Offline`)
             .setThumbnail(live? config.servers[i].icon : "https://i.imgur.com/I2pNIWW.png")
-            .addField("Current Map", result.map, true)
             .addField("Players", `${result.players.length}/${result.maxplayers}`, true)
-            
-        if(config.server[i].connect === true){
-            embed.addField("Connect", `steam://connect/${config.servers[i].ip}:${config.servers[i].port}`, true);
-        }
+            if(result.map){
+                embed.addField("Current Map", result.map, true)
+            }
+            else if(config.servers[i].connect === true){
+                embed.addField("Connect", `steam://connect/${config.servers[i].ip}:${config.servers[i].port}`, true);
+            }
         
         serverEmbeds.push({
-            "players": result.playersnum,
+            "players": result.players.length,
             "embed": embed
         });
     }
