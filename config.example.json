@@ -1,5 +1,5 @@
 {
-    "token": "DSICORD_TOKEN",
+    "token": "DISCORD_TOKEN",
     "interval": 350000,
     "channel": "CHANNEL_ID",
     "messages": [ "run init.js to generate messages"],
