@@ -9,7 +9,8 @@
             "ip": "ip of server",
             "port": 2302,
             "type": "arma3",
-            "icon": "embed icon"
+            "icon": "embed icon",
+            "connect": "false"
         }
     ]
 }
