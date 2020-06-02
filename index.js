@@ -19,7 +19,7 @@
  */
 
 const Discord = require("discord.js");
-const query = require('gamedig');
+const server = require('gamedig');
 
 const client = new Discord.Client({autoReconnect: true});
 const config = require("./config.json");
@@ -59,8 +59,8 @@ async function updateServers() {
 
     for (let i = 0; i < config.servers.length; i++) {
 
-        let result = await query.query({
-            type:'arma3',
+        let result = await server.query({
+            type: config.servers[i].type,
             host: config.servers[i].ip,
             port: config.servers[i].port});
         let live = !(result instanceof Error);
