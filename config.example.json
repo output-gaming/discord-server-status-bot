@@ -1,0 +1,15 @@
+{
+    "token": "DSICORD_TOKEN",
+    "interval": 350000,
+    "channel": "CHANNEL_ID",
+    "messages": [ "run init.js to generate messages"],
+    "servers": [
+        {
+            "name": "Name of server",
+            "ip": "ip of server",
+            "port": 2302,
+            "type": "arma3",
+            "icon": "embed icon"
+        }
+    ]
+}
