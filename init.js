@@ -15,15 +15,19 @@ client.on("ready", async () => {
 });
 
 async function createMessages() {
-    
-    config["messages"] = [];
-
-    let channel = await client.channels.fetch(config.channel);
-
-    for (let i = 0; i < config.servers.length; i++) {
-        let message = await channel.send(new Discord.MessageEmbed());
-        config["messages"].push(message.id);
-    }
+    let equal  =  Object.keys(config.servers).length === config.messages.length;
+    if(equal){
+        console.log('Messages all setup');
+        return;
+    }else{
+        let addMessages = Object.keys(config.servers).length - config.messages.length;
+        console.log('adding '+ addMessages +' server/s');
+        let channel = await client.channels.fetch(config.channel);
+        for (let i = 0; i < addMessages; i++) {
+            let message = await channel.send(new Discord.MessageEmbed());
+            config["messages"].push(message.id);
+        }
+    }  
 }
 
 client.login(config.token);

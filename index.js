@@ -38,6 +38,7 @@ client.login(config.token);
 async function startBot() {
     await loadMessages();
     updateServers();
+    client.user.setStatus('idle', "My master is fingerguns, bow to him."); 
 }
 
 async function loadMessages() {
@@ -65,14 +66,16 @@ async function updateServers() {
     
 
     for (let i = 0; i < config.servers.length; i++) {
-
+        client.user.setStatus('online', 'Getting server '+config.servers[i].name+ 'info'); 
+        console.log('Querying server:',config.servers[i].name);
         let result = await server.query({
             type: config.servers[i].type,
             host: config.servers[i].ip,
             port: config.servers[i].port,
             });
 
-        console.log(result);
+        console.log('Querying complete on:',config.servers[i].name);
+        
         let live = !(result instanceof Error);
         const embed = new Discord.MessageEmbed()
             .setColor(live ? "#0099ff" : "#ff4242")
@@ -103,7 +106,7 @@ async function updateServers() {
         let message = await channel.messages.fetch(messageIds[i]);
         await message.edit(serverEmbeds[i]["embed"]);
     }
-    
+
     setTimeout(() => {
         updateServers();
     }, config.interval);
