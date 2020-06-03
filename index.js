@@ -53,9 +53,16 @@ async function loadMessages() {
     }
 }
 
+
+
 async function updateServers() {
+    
+    //setup timestamp
+    var d = new Date();
+    var now = d.toLocaleTimeString();
 
     serverEmbeds = [];
+    
 
     for (let i = 0; i < config.servers.length; i++) {
 
@@ -78,7 +85,8 @@ async function updateServers() {
             else if(config.servers[i].connect === true){
                 embed.addField("Connect", `steam://connect/${config.servers[i].ip}:${config.servers[i].port}`, true);
             }
-        
+            embed.addField('Updated', now, true);
+
         serverEmbeds.push({
             "players": result.players.length,
             "embed": embed
