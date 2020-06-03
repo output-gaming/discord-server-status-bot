@@ -27,9 +27,7 @@ async function createMessages() {
             let message = await channel.send(new Discord.MessageEmbed());
             config["messages"].push(message.id);
         }
-        console.log('Init complete you can now close this process..');  
     }
-   
 }
 
 client.login(config.token);
