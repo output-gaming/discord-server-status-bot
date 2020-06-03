@@ -29,7 +29,6 @@ let messageIds = [];
 client.on("ready", () => {
     
     console.log(`Logged in as "${client.user.username}"`);
-
     startBot();
 });
 
@@ -38,7 +37,7 @@ client.login(config.token);
 async function startBot() {
     await loadMessages();
     updateServers();
-    client.user.setStatus('idle', "My master is fingerguns, bow to him."); 
+    
 }
 
 async function loadMessages() {
@@ -66,7 +65,6 @@ async function updateServers() {
     
 
     for (let i = 0; i < config.servers.length; i++) {
-        client.user.setStatus('online', 'Getting server '+config.servers[i].name+ 'info'); 
         console.log('Querying server:',config.servers[i].name);
         let result = await server.query({
             type: config.servers[i].type,
