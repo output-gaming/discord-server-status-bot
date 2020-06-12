@@ -63,7 +63,6 @@ async function updateServers() {
 
     serverEmbeds = [];
     
-
     for (let i = 0; i < config.servers.length; i++) {
         console.log('Querying server:',config.servers[i].name);
         let result = await server.query({
@@ -71,7 +70,7 @@ async function updateServers() {
             host: config.servers[i].ip,
             port: config.servers[i].port,
             });
-
+        
         console.log('Querying complete on:',config.servers[i].name);
         
         let live = !(result instanceof Error);
@@ -83,8 +82,8 @@ async function updateServers() {
             if(result.map){
                 embed.addField("Current Map", result.map, true)
             }
-            else if(config.servers[i].connect === true){
-                embed.addField("Connect", `steam://connect/${config.servers[i].ip}:${config.servers[i].port}`, true);
+            else if(config.servers[i].type === 'arma3'){
+                embed.addField("Connect", `steam://run/107410//-connect=${config.servers[i].ip}+'%20-port='+${config.servers[i].port}`, true);
             }
             embed.addField('Updated', now, true);
 
