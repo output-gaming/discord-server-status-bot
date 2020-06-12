@@ -83,7 +83,8 @@ async function updateServers() {
                 embed.addField("Current Map", result.map, true)
             }
             else if(config.servers[i].type === 'arma3'){
-                embed.addField("Connect", `steam://run/107410//-connect=${config.servers[i].ip}+'%20-port='+${config.servers[i].port}`, true);
+                let connectButton = 'steam://run/107410//-connect='+config.servers[i].ip+'%20-port='+config.servers[i].port;
+                embed.setURL(connectButton);
             }
             embed.addField('Updated', now, true);
 
