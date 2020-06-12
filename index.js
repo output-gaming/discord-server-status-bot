@@ -79,12 +79,9 @@ async function updateServers() {
             .setTitle(live ? result.name : `${config.servers[i].name} | Offline`)
             .setThumbnail(live? config.servers[i].icon : "https://i.imgur.com/I2pNIWW.png")
             .addField("Players", `${result.players.length}/${result.maxplayers}`, true)
+            .addField("Connect", result.connect, true);
             if(result.map){
                 embed.addField("Current Map", result.map, true)
-            }
-            else if(config.servers[i].type === 'arma3'){
-                let connectButton = 'steam://run/107410//-connect='+config.servers[i].ip+'%20-port='+config.servers[i].port;
-                embed.setURL(connectButton);
             }
             embed.addField('Updated', now, true);
 
