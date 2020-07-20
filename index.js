@@ -69,24 +69,27 @@ async function updateServers() {
             type: config.servers[i].type,
             host: config.servers[i].ip,
             port: config.servers[i].port,
+            }).then((state) => {
+                return state;
+            }).catch((error) => {
+                return "Server is offline";
             });
-        
         console.log('Querying complete on:',config.servers[i].name);
-        
-        let live = !(result instanceof Error);
+        console.log('query result =',result);
+        let live = !(result === "Server is offline");
         const embed = new Discord.MessageEmbed()
             .setColor(live ? "#0099ff" : "#ff4242")
             .setTitle(live ? result.name : `${config.servers[i].name} | Offline`)
             .setThumbnail(live? config.servers[i].icon : "https://i.imgur.com/I2pNIWW.png")
-            .addField("Players", `${result.players.length}/${result.maxplayers}`, true)
-            .addField("Connect", result.connect, true);
+            .addField("Players", live? `${result.players.length}/${result.maxplayers}` : 'Offline', true)
+            .addField("Connect", live? result.connect : 'Offline', true);
             if(result.map){
                 embed.addField("Current Map", result.map, true)
             }
             embed.addField('Updated', now, true);
 
         serverEmbeds.push({
-            "players": result.players.length,
+            "players": live? result.players.length : 0,
             "embed": embed
         });
     }
