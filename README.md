@@ -6,4 +6,4 @@ Then run `init.js` to generate the messages in the discord channel. You need to 
 
 Screenshot:
 
-<img src="https://i.imgur.com/wLFtVZn.png" alt="Example of it in use"/>
+<img src="https://i.imgur.com/b03OQAH.jpeg" alt="Example of it in use"/>
